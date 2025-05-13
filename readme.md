@@ -93,5 +93,5 @@
 
 如有任何问题或建议，请联系：
 
-- 技术支持：support@alzheimer-platform.com
-- 开发团队：dev@alzheimer-platform.com
+- email：1909221500@qq.com
+
