@@ -1,0 +1,73 @@
+<!--pages/profile/authentication/authentication.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">患者认证</view>
+    <view class="subtitle">请填写真实信息，认证后不可修改</view>
+  </view>
+
+  <view class="form">
+    <view class="section-title">基本信息</view>
+    <view class="form-item">
+      <view class="label">真实姓名</view>
+      <input class="input" type="text" placeholder="请输入真实姓名" value="{{name}}" bindinput="bindNameInput"/>
+      <view class="input-icon">👤</view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">联系方式</view>
+      <input class="input" type="number" placeholder="请输入手机号码" value="{{phone}}" bindinput="bindPhoneInput"/>
+      <view class="input-icon">📱</view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">电子邮箱</view>
+      <input class="input" type="text" placeholder="请输入电子邮箱" value="{{email}}" bindinput="bindEmailInput"/>
+      <view class="input-icon">📧</view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">身份证号</view>
+      <input class="input" type="idcard" placeholder="请输入身份证号" value="{{idCard}}" bindinput="bindIdCardInput"/>
+      <view class="input-icon">🆔</view>
+    </view>
+
+    <view class="section-title">个人信息</view>
+    <view class="form-item">
+      <view class="label">出生日期</view>
+      <picker mode="date" value="{{birthDate}}" start="1900-01-01" end="2023-12-31" bindchange="bindDateChange">
+        <view class="picker">
+          <text>{{birthDate || '请选择出生日期'}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="label">性别</view>
+      <picker bindchange="bindGenderChange" value="{{genderIndex}}" range="{{genderArray}}">
+        <view class="picker">
+          <text>{{gender || '请选择性别'}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="label">住址</view>
+      <input class="input" type="text" placeholder="请输入详细住址" value="{{address}}" bindinput="bindAddressInput"/>
+      <view class="input-icon">📍</view>
+    </view>
+
+    <view class="form-item">
+      <view class="label">既往病史</view>
+      <textarea class="textarea" placeholder="请输入既往病史（选填）" value="{{remark}}" bindinput="bindRemarkInput"></textarea>
+    </view>
+  </view>
+
+  <view class="tips">
+    <text class="tips-icon">!</text>
+    <text>提示：认证信息提交后将进行审核，请确保填写信息真实有效。</text>
+  </view>
+
+  <view class="btn-area">
+    <button class="btn-submit" bindtap="submitAuthentication">提交认证</button>
+  </view>
+</view> 

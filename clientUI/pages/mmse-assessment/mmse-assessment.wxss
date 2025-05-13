@@ -1,0 +1,358 @@
+/* pages/mmse-assessment/mmse-assessment.wxss */
+.mmse-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20rpx 0 100rpx 0;
+  background-color: #F6F6F6;
+}
+
+/* 悬浮进度组件 */
+.floating-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.progress-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.progress-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2E8B57;
+}
+
+.progress-count {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8rpx;
+  background-color: #EEEEEE;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.progress-bar-inner {
+  height: 100%;
+  background-color: #2E8B57;
+  border-radius: 4rpx;
+  transition: width 0.3s;
+}
+
+.mmse-content {
+  flex: 1;
+  padding: 30rpx;
+  margin-top: 120rpx; /* 增加悬浮组件的预留空间 */
+}
+
+.loading-container, .empty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.section-container {
+  margin-bottom: 30rpx;
+}
+
+.questions-container {
+  margin-bottom: 30rpx;
+}
+
+.question-item {
+  margin-bottom: 40rpx;
+  padding: 30rpx;
+  background-color: white;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.question-header {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.question-number {
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.question-text {
+  flex: 1;
+}
+
+.question-score {
+  color: #666666;
+  margin-left: 10rpx;
+}
+
+/* 题目类型标签样式 */
+.question-type-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+
+.tag-margin {
+  margin-right: 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.question-media {
+  margin: 20rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.media-type-container {
+  align-self: flex-start;
+  margin-bottom: 16rpx;
+}
+
+/* 图片样式 */
+.question-image {
+  width: 80%;
+  max-height: 400rpx;
+  object-fit: contain;
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 音频容器样式 */
+.audio-container {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.audio-container audio {
+  width: 100%;
+}
+
+/* 视频容器样式 */
+.video-container {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.video-container video {
+  width: 100%;
+  max-height: 400rpx;
+  border-radius: 8rpx;
+}
+
+.question-answer {
+  margin-top: 30rpx;
+}
+
+.answer-input-container {
+  padding: 20rpx 0;
+}
+
+.answer-input {
+  width: 100%;
+  padding: 20rpx;
+  border: 2rpx solid #EEEEEE;
+  border-radius: 8rpx;
+  background-color: #F9F9F9;
+}
+
+.mmse-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  background-color: white;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  z-index: 100; /* 确保底部按钮在最上层 */
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prev-button, .next-button {
+  width: 45%;
+  padding: 20rpx 0;
+  text-align: center;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+}
+
+.prev-button {
+  background-color: #EEEEEE;
+  color: #666666;
+}
+
+.prev-button[disabled] {
+  background-color: #F5F5F5;
+  color: #AAAAAA;
+}
+
+.next-button {
+  background-color: #2E8B57;
+  color: white;
+}
+
+/* 音频答案容器样式 */
+.audio-answer-container {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  border: 2rpx solid #eeeeee;
+}
+
+.record-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.record-button, .stop-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 40rpx;
+  border-radius: 100rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.record-button {
+  background-color: #2E8B57;
+  color: white;
+}
+
+.stop-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.record-icon {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+  margin-right: 10rpx;
+}
+
+.stop-icon {
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #ffffff;
+  margin-right: 10rpx;
+}
+
+.recording-status {
+  text-align: center;
+  color: #666;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.uploaded-audio {
+  margin-top: 20rpx;
+  padding: 16rpx;
+  background-color: #ffffff;
+  border-radius: 8rpx;
+  border: 1rpx solid #e6e6e6;
+}
+
+.audio-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 10rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.status-label {
+  margin-right: 10rpx;
+}
+
+.success-icon {
+  color: #2E8B57;
+  font-weight: bold;
+}
+
+/* 图片上传相关样式 */
+.image-upload-container {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 40rpx;
+  border-radius: 100rpx;
+  background-color: #2E8B57;
+  color: white;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+}
+
+.upload-icon {
+  font-size: 36rpx;
+  margin-right: 10rpx;
+  font-weight: bold;
+}
+
+.uploaded-image-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  border: 2rpx solid #eeeeee;
+}
+
+.uploaded-image {
+  width: 80%;
+  max-height: 400rpx;
+  object-fit: contain;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.image-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rpx;
+  color: #666;
+  font-size: 24rpx;
+} 

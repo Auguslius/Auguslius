@@ -1,0 +1,35 @@
+package org.example.domain.dto;
+
+import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+
+@Data
+@Schema(description = "机构种类DTO")
+public class InstitutionCategoryDTO {
+
+    @NotNull(message = "ID 不能为空")
+    @Schema(description = "ID")
+    private Integer id;
+
+    @Schema(description = "种类名称")
+    @NotNull(message = "种类名称不能为空")
+    private String categoryName;
+
+    @Schema(description = "种类别名")
+    private String categoryAlias;
+
+    @Schema(description = "创建人")
+    @NotNull(message = "创建人不能为空")
+    private Integer createUser;
+
+    @Schema(description = "层级")
+    private Integer level;
+
+    @Schema(description = "层级名称")
+    private String levelName;
+
+    @Schema(description = "备注")
+    private String remark;
+
+}

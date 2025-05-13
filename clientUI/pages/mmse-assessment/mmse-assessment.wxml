@@ -1,0 +1,155 @@
+<!--pages/mmse-assessment/mmse-assessment.wxml-->
+<view class="mmse-container">
+  <!-- 悬浮进度组件 -->
+  <view class="floating-progress" wx:if="{{sections.length > 0}}">
+    <view class="progress-section">
+      <text class="progress-title">{{sections[currentSectionIndex].name}}</text>
+      <text class="progress-count">{{currentSectionIndex + 1}}/{{sections.length}}</text>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-bar-inner" style="width: {{(currentSectionIndex + 1) / sections.length * 100}}%"></view>
+    </view>
+  </view>
+
+  <view class="mmse-content">
+    <!-- 加载中 -->
+    <view class="loading-container" wx:if="{{loading}}">
+      <van-loading color="#2E8B57" size="24px" />
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <!-- 空数据提示 -->
+    <view class="empty-container" wx:elif="{{!loading && mmseQuestions.length === 0}}">
+      <text>暂无评估题目</text>
+    </view>
+
+    <!-- 题目展示 -->
+    <view class="section-container" wx:elif="{{!loading && currentSectionIndex >= 0 && currentSectionIndex < sections.length}}">
+      <view class="questions-container">
+        <view class="question-item" wx:for="{{sections[currentSectionIndex].questions}}" wx:key="position">
+          <view class="question-header">
+            <text class="question-number">{{index + 1}}.</text>
+            <text class="question-text">{{item.questionText}}</text>
+            <text class="question-score">({{item.maxScore}}分)</text>
+          </view>
+
+          <!-- 题目类型标签 -->
+          <view class="question-type-tags">
+            <van-tag type="success" round size="medium" custom-class="tag-margin">{{item.sectionLabel}}</van-tag>
+            <van-tag type="primary" round size="medium" custom-class="tag-margin">{{item.questionTypeLabel}}</van-tag>
+            <van-tag wx:if="{{item.validationMethodLabel}}" type="warning" round size="medium" custom-class="tag-margin">{{item.validationMethodLabel}}</van-tag>
+          </view>
+
+          <!-- 题目媒体资源 - 仅在非TEXT类型时显示 -->
+          <view class="question-media" wx:if="{{item.urlCategory && item.urlIndex && item.urlCategory !== 'TEXT'}}">
+            <view class="media-type-container">
+              <van-tag plain type="primary" size="medium">{{item.urlCategoryLabel || '媒体'}}</van-tag>
+            </view>
+            
+            <!-- 图片资源 -->
+            <image wx:if="{{item.urlCategory === 'IMAGE'}}" 
+                   class="question-image" 
+                   src="{{item.urlIndex}}" 
+                   mode="aspectFit" 
+                   bindtap="previewImage" 
+                   data-url="{{item.urlIndex}}"></image>
+            
+            <!-- 添加图片上传功能 -->
+            <view wx:if="{{item.urlCategory === 'IMAGE'}}" class="image-upload-container">
+              <view class="upload-button" bindtap="chooseImage" data-position="{{item.position}}">
+                <view class="upload-icon">+</view>
+                <text>上传图片</text>
+              </view>
+              <!-- 显示已上传的图片 -->
+              <view wx:if="{{answers[item.position] && answers[item.position].imagePath}}" class="uploaded-image-container">
+                <image 
+                  class="uploaded-image" 
+                  src="{{answers[item.position].imagePath}}" 
+                  mode="aspectFit" 
+                  bindtap="previewUploadedImage" 
+                  data-url="{{answers[item.position].imagePath}}"></image>
+                <view class="image-status">
+                  <text class="status-label">{{answers[item.position].isUploading ? '上传中...' : '已上传'}}</text>
+                  <text wx:if="{{answers[item.position].uploadSuccess}}" class="success-icon">✓</text>
+                </view>
+              </view>
+            </view>
+            
+            <!-- 音频资源 -->
+            <view wx:elif="{{item.urlCategory === 'AUDIO'}}" class="audio-container">
+              <audio 
+                src="{{item.urlIndex}}" 
+                controls 
+                poster="../../static/images/audio-poster.png"
+                name="音频资源"
+                author="MMSE评估"></audio>
+            </view>
+            
+            <!-- 视频资源 -->
+            <view wx:elif="{{item.urlCategory === 'VIDEO'}}" class="video-container">
+              <video 
+                src="{{item.urlIndex}}" 
+                controls
+                show-fullscreen-btn
+                show-play-btn
+                show-center-play-btn
+                object-fit="contain"></video>
+            </view>
+          </view>
+
+          <!-- 题目答案区域 -->
+          <view class="question-answer">
+            <!-- 音频类型问题的答案区域 -->
+            <view wx:if="{{item.urlCategory === 'AUDIO'}}" class="audio-answer-container">
+              <view class="record-controls">
+                <view wx:if="{{!recordingInfo.isRecording || recordingInfo.position !== item.position}}" 
+                      class="record-button" 
+                      bindtap="startRecording" 
+                      data-position="{{item.position}}">
+                  <view class="record-icon"></view>
+                  <text>开始录音</text>
+                </view>
+                <view wx:else class="stop-button" bindtap="stopRecording">
+                  <view class="stop-icon"></view>
+                  <text>停止录音</text>
+                </view>
+              </view>
+              <view wx:if="{{recordingInfo.position === item.position && recordingInfo.duration > 0}}" class="recording-status">
+                <text>录音时长: {{recordingInfo.duration}}秒</text>
+              </view>
+              <!-- 显示已上传的音频 -->
+              <view wx:if="{{answers[item.position] && answers[item.position].audioPath}}" class="uploaded-audio">
+                <audio 
+                  src="{{answers[item.position].audioPath}}" 
+                  controls 
+                  name="你的回答"
+                  author="MMSE评估"></audio>
+                  <view class="audio-status">
+                    <text class="status-label">{{answers[item.position].isUploading ? '上传中...' : '已上传'}}</text>
+                    <text wx:if="{{answers[item.position].uploadSuccess}}" class="success-icon">✓</text>
+                  </view>
+              </view>
+            </view>
+            <!-- 其他类型问题的答案区域 -->
+            <view wx:else class="answer-input-container">
+              <input class="answer-input" type="text" placeholder="请输入答案" 
+                     bindinput="onAnswerInput" 
+                     data-position="{{item.position}}"
+                     data-max-score="{{item.maxScore}}" data-expected-answer="{{item.expectedAnswer}}"/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部导航按钮 -->
+  <view class="mmse-footer" wx:if="{{!loading && sections.length > 0}}">
+    <view class="footer-buttons">
+      <button class="prev-button" bindtap="prevSection" disabled="{{currentSectionIndex <= 0}}">上一部分</button>
+      <button class="next-button" bindtap="nextSection">
+        {{currentSectionIndex < sections.length - 1 ? '下一部分' : '完成评估'}}
+      </button>
+    </view>
+  </view>
+</view> 

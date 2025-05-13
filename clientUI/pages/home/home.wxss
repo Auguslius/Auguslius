@@ -1,0 +1,286 @@
+/**home.wxss**/
+page {
+  background-color: #f7f8fa;
+}
+
+.home-container {
+  min-height: 100vh;
+  padding-bottom: 0;
+  width: 100%;
+}
+
+/* 状态栏样式 */
+.status-bar {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-tip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-tip text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.welcome {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 轮播图样式 */
+.banner-section {
+  margin: 0 0 0;
+  overflow: hidden;
+  height: 320rpx;
+  width: 100%;
+}
+
+.banner-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: #fff;
+  padding: 20rpx 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 服务分类样式 */
+.services-section {
+  background-color: #fff;
+  margin: 0;
+  padding: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.service-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.service-icon {
+  color: #2E8B57 !important;
+  margin-bottom: 10rpx;
+  font-size: 80rpx !important;
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.service-name {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 医生列表样式 */
+.doctors-section {
+  background-color: #fff;
+  margin: 0;
+  padding: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.doctors-list {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+/* 加载中状态 */
+.loading-doctors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.loading-doctors .loading-text {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 空数据状态 */
+.empty-doctors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.doctor-card {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.doctor-card:last-child {
+  border-bottom: none;
+}
+
+.doctor-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.doctor-info {
+  flex: 1;
+}
+
+.doctor-name-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.doctor-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.doctor-number {
+  font-size: 24rpx;
+  color: #2E8B57;
+  background-color: rgba(46, 139, 87, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+}
+
+.doctor-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-institution {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.doctor-position {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 健康资讯样式 */
+.articles-section {
+  background-color: #fff;
+  margin: 0;
+  padding: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.articles-list {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.article-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.article-item:last-child {
+  border-bottom: none;
+}
+
+.article-content {
+  flex: 1;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.article-title {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-views {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.article-image {
+  width: 160rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+} 

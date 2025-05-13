@@ -1,0 +1,129 @@
+<!--pages/profile/my-doctors/my-doctors.wxml-->
+<view class="page-container">
+
+  <!-- 错误提示 -->
+  <view class="error-toast {{showTopError ? 'show' : ''}}">
+    <view class="error-content">
+      <van-icon name="warning-o" color="#f56c6c" size="36rpx" />
+      <text>{{topErrorMsg}}</text>
+      <van-icon name="cross" color="#999" size="36rpx" catchtap="closeTopError" />
+    </view>
+  </view>
+
+  <!-- 未登录状态 -->
+  <view class="login-needed" wx:if="{{!isLogin}}">
+    <view class="login-icon">
+      <van-icon name="manager-o" size="120rpx" color="#2E8B57" />
+    </view>
+    <view class="login-text">请先登录查看您的专属医生</view>
+    <view class="login-action">
+      <button class="login-button" bindtap="goToLogin">立即登录</button>
+    </view>
+  </view>
+
+  <!-- 已登录状态 -->
+  <block wx:else>
+    <!-- 加载状态 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <view class="loading-icon">
+        <van-loading color="#2E8B57" />
+      </view>
+      <view class="loading-text">加载中...</view>
+    </view>
+
+    <!-- 医生详情 -->
+    <view class="doctor-detail" wx:if="{{!loading && doctorList.length > 0}}">
+      <view class="doctor-header">
+        <image class="doctor-avatar-large" src="{{doctorList[0].userPic || '/static/images/default-avatar.png'}}" mode="aspectFill" lazy-load />
+        <view class="doctor-header-info">
+          <view class="doctor-name-large">{{doctorList[0].nickname || doctorList[0].username || '医生'}}</view>
+          <view class="doctor-badges">
+            <view class="doctor-position-badge">{{doctorList[0].position || '医师'}}</view>
+            <view class="doctor-status-badge {{doctorList[0].status === 'active' ? 'active' : 'inactive'}}">
+              {{doctorList[0].status === 'active' ? '在职' : '离职'}}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="info-section">
+        <view class="section-title">基本信息</view>
+        <view class="info-grid">
+          <view class="info-item" wx:if="{{doctorList[0].institution}}">
+            <view class="info-label">所在医院</view>
+            <view class="info-value">{{doctorList[0].institution}}</view>
+          </view>
+          <view class="info-item" wx:if="{{doctorList[0].room}}">
+            <view class="info-label">诊室</view>
+            <view class="info-value">{{doctorList[0].room}}</view>
+          </view>
+          <view class="info-item" wx:if="{{doctorList[0].age}}">
+            <view class="info-label">年龄</view>
+            <view class="info-value">{{doctorList[0].age}}岁</view>
+          </view>
+          <view class="info-item" wx:if="{{doctorList[0].number}}">
+            <view class="info-label">工号</view>
+            <view class="info-value">{{doctorList[0].number}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="info-section">
+        <view class="section-title">联系方式</view>
+        <view class="contact-list">
+          <view class="contact-item" wx:if="{{doctorList[0].phone}}" bindtap="makePhoneCall" data-phone="{{doctorList[0].phone}}">
+            <van-icon name="phone-o" color="#2E8B57" size="40rpx" />
+            <text>{{doctorList[0].phone}}</text>
+            <view class="tap-hint">点击拨打</view>
+          </view>
+          <view class="contact-item" wx:if="{{doctorList[0].email}}">
+            <van-icon name="envelop-o" color="#2E8B57" size="40rpx" />
+            <text>{{doctorList[0].email}}</text>
+          </view>
+          <view class="contact-item" wx:if="{{doctorList[0].address}}">
+            <van-icon name="location-o" color="#2E8B57" size="40rpx" />
+            <text>{{doctorList[0].address}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="info-section">
+        <view class="section-title">认证信息</view>
+        <view class="auth-status">
+          <view class="auth-badge {{doctorList[0].isAuthenticated ? 'verified' : 'unverified'}}">
+            <van-icon name="{{doctorList[0].isAuthenticated ? 'certificate' : 'warning-o'}}" color="{{doctorList[0].isAuthenticated ? '#2E8B57' : '#f56c6c'}}" size="32rpx" />
+            <text>{{doctorList[0].isAuthenticated ? '已认证' : '未认证'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="action-group">
+        <button class="action-btn contact" catchtap="contactDoctor" data-index="0">
+          <van-icon name="phone-o" color="#fff" size="36rpx" />
+          <text>联系医生</text>
+        </button>
+        <button class="action-btn unbind" catchtap="unbindDoctor" data-index="0">
+          <van-icon name="close" color="#fff" size="36rpx" />
+          <text>解除绑定</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 无数据状态 -->
+    <view class="empty-state" wx:if="{{!loading && doctorList.length === 0}}">
+      <view class="empty-icon">
+        <van-icon name="friends-o" size="120rpx" color="#2E8B57" />
+      </view>
+      <view class="empty-text">暂无绑定医生</view>
+      <view class="empty-sub-text">绑定医生后可随时联系获取专业医疗建议</view>
+      <view class="empty-action">
+        <button class="action-button" bindtap="goToBindDoctor">去绑定医生</button>
+      </view>
+    </view>
+    
+    <!-- 快速拨打电话悬浮按钮 -->
+    <view class="quick-call-button" wx:if="{{!loading && doctorList.length > 0 && doctorList[0].phone}}" catchtap="makePhoneCall" data-phone="{{doctorList[0].phone}}">
+      <van-icon name="phone" size="48rpx" color="#fff" />
+    </view>
+  </block>
+</view> 

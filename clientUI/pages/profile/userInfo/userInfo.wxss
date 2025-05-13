@@ -1,0 +1,190 @@
+/* pages/profile/userInfo/userInfo.wxss */
+.userinfo-container {
+  min-height: 100vh;
+  background-color: #f7f8fa;
+  padding-bottom: 40rpx;
+}
+
+/* 页面标题样式 */
+.page-header {
+  background-color: #2E8B57;
+  color: #fff;
+  padding: 40rpx 30rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 20rpx rgba(46, 139, 87, 0.2);
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+/* 信息卡片样式 */
+.info-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  padding: 20rpx 0;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+  margin-bottom: 10rpx;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.value {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+  word-break: break-all;
+}
+
+/* 认证状态样式 */
+.auth-status {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+.auth-status.authenticated {
+  background-color: #e6f7ff;
+  color: #1890ff;
+  border: 1rpx solid #91d5ff;
+}
+
+.auth-status.not-authenticated {
+  background-color: #fff7e6;
+  color: #fa8c16;
+  border: 1rpx solid #ffd591;
+}
+
+/* 加载中样式 */
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #e6e6e6;
+  border-top: 4rpx solid #2E8B57;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 未认证提示样式 */
+.not-auth-tip {
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  padding: 40rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tip-icon {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #fff7e6;
+  color: #fa8c16;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  border: 2rpx solid #ffd591;
+}
+
+.tip-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30rpx;
+}
+
+.go-auth-btn {
+  background: linear-gradient(to right, #3cb371, #2E8B57);
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  padding: 16rpx 60rpx;
+  border: none;
+  margin-top: 10rpx;
+}
+
+/* 顶部错误提示框样式 */
+.top-error-container {
+  position: fixed;
+  top: -100rpx;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out;
+}
+
+.top-error-container.show {
+  top: 0;
+}
+
+.top-error-content {
+  background-color: #fff2f0;
+  border-bottom: 1rpx solid #ffccc7;
+  color: #f5222d;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.top-error-icon {
+  margin-right: 10rpx;
+  font-size: 32rpx;
+  color: #f5222d;
+}
+
+.top-error-close {
+  margin-left: auto;
+  font-size: 32rpx;
+  color: #999;
+} 

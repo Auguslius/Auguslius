@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "MMSE量表评估",
+  "navigationBarBackgroundColor": "#2E8B57",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "van-loading": "@vant/weapp/loading/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
+  }
+} 

@@ -1,0 +1,85 @@
+<!--pages/profile/userInfo/userInfo.wxml-->
+<view class="userinfo-container">
+  <!-- 顶部错误提示框 -->
+  <view class="top-error-container {{showTopError ? 'show' : ''}}" bindtap="closeTopError">
+    <view class="top-error-content">
+      <van-icon name="warning-o" class="top-error-icon" />
+      <text>{{topErrorMsg}}</text>
+      <van-icon name="cross" class="top-error-close" catchtap="closeTopError" />
+    </view>
+  </view>
+
+
+
+  <!-- 用户基本信息 -->
+  <view class="info-card">
+    <view class="card-title">
+      <text>基本信息</text>
+    </view>
+    <view class="info-item">
+      <text class="label">用户名</text>
+      <text class="value">{{userInfo.username || '未设置'}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">用户ID</text>
+      <text class="value">{{userInfo.uuid || '未知'}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">认证状态</text>
+      <view class="auth-status {{isAuthenticated ? 'authenticated' : 'not-authenticated'}}">
+        {{isAuthenticated ? '已认证' : '未认证'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 认证信息 -->
+  <block wx:if="{{isAuthenticated}}">
+    <view class="info-card" wx:if="{{!loadingAuth && authInfo}}">
+      <view class="card-title">
+        <text>认证信息</text>
+      </view>
+      <view class="info-item">
+        <text class="label">真实姓名</text>
+        <text class="value">{{authInfo.name || '未设置'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">性别</text>
+        <text class="value">男</text>
+      </view>
+      <view class="info-item">
+        <text class="label">出生日期</text>
+        <text class="value">{{authInfo.birthDate || '未设置'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">联系电话</text>
+        <text class="value">{{authInfo.phone || '未设置'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">身份证号</text>
+        <text class="value">{{authInfo.idCard || '未设置'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">住址</text>
+        <text class="value">{{authInfo.address || '未设置'}}</text>
+      </view>
+      <view class="info-item" wx:if="{{authInfo.remark}}">
+        <text class="label">既往病史</text>
+        <text class="value">{{authInfo.remark}}</text>
+      </view>
+    </view>
+    
+    <view class="loading-box" wx:if="{{loadingAuth}}">
+      <view class="loading-spinner"></view>
+      <text>加载认证信息中...</text>
+    </view>
+  </block>
+  
+  <!-- 未认证提示 -->
+  <block wx:else>
+    <view class="not-auth-tip">
+      <view class="tip-icon">!</view>
+      <view class="tip-text">您尚未完成患者认证，认证后可以使用更多功能</view>
+      <button class="go-auth-btn" bindtap="goToAuthentication">立即认证</button>
+    </view>
+  </block>
+</view> 

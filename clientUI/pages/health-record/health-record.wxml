@@ -1,0 +1,85 @@
+<!--pages/health-record/health-record.wxml-->
+<view class="health-record-container">
+  <view class="header">
+    <view class="title">健康档案</view>
+    <view class="user-info" wx:if="{{userInfo}}">
+      <view class="user-name">{{userInfo.name || userInfo.username}}</view>
+      <view class="user-id">ID: {{userInfo.uuid}}</view>
+    </view>
+  </view>
+
+  <!-- 数据加载中 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-icon"></view>
+    <text>数据加载中...</text>
+  </view>
+
+  <!-- 无数据提示 -->
+  <view class="empty-container" wx:elif="{{!mmseAnswers}}">
+    <view class="empty-icon"></view>
+    <text>暂无评估记录</text>
+  </view>
+
+  <!-- MMSE评估结果 -->
+  <view class="mmse-container" wx:elif="{{mmseAnswers}}">
+    <view class="section-title">
+      <view class="title-text">MMSE认知评估</view>
+      <view class="divider"></view>
+    </view>
+
+    <!-- 按部分分组显示答案 -->
+    <view class="section-container" wx:for="{{groupedAnswers}}" wx:for-index="section" wx:for-item="answers" wx:key="section">
+      <view class="section-header">
+        <text class="section-name">{{sectionMap[section] || section}}</text>
+      </view>
+
+      <view class="answers-list">
+        <view class="answer-item" wx:for="{{answers}}" wx:key="position">
+          <view class="question-info">
+            <text class="question-position">{{item.position}}.</text>
+            <text class="question-type">{{questionTypeMap[item.questionType] || item.questionType}}</text>
+          </view>
+          <view class="answer-content">
+            <text class="answer-label">答案：</text>
+            <text class="answer-value">{{item.value || '未作答'}}</text>
+          </view>
+          
+          <!-- 添加音频展示 -->
+          <view class="answer-media" wx:if="{{item.audioUrl}}">
+            <text class="media-label">录音：</text>
+            <view class="audio-container">
+              <audio 
+                src="{{item.audioUrl}}" 
+                controls 
+                poster="../../static/images/audio-poster.png"
+                name="答案录音"
+                author="MMSE评估"></audio>
+            </view>
+          </view>
+          
+          <!-- 添加图片展示 -->
+          <view class="answer-media" wx:if="{{item.imageUrl}}">
+            <text class="media-label">图片：</text>
+            <view class="image-container">
+              <image 
+                src="{{item.imageUrl}}" 
+                mode="widthFix" 
+                class="answer-image"
+                bindtap="previewImage"
+                data-url="{{item.imageUrl}}"></image>
+            </view>
+          </view>
+          
+          <view class="answer-details" wx:if="{{item.expectedAnswer}}">
+            <text class="expected-answer">期望答案：{{item.expectedAnswer}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部注释 -->
+    <view class="footer-note">
+      <text>*以上数据来自最近一次MMSE认知测评</text>
+    </view>
+  </view>
+</view> 

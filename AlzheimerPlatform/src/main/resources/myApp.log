@@ -1,0 +1,51 @@
+2025-05-13T14:09:25.164+08:00  INFO 9800 --- [main] org.example.HealthCareApplication        : Starting HealthCareApplication using Java 21.0.6 with PID 9800 (C:\Users\lenovo\Desktop\AlzheimerPlatform\AlzheimerPlatform\untitled\target\classes started by lenovo in C:\Users\lenovo\Desktop\AlzheimerPlatform)
+2025-05-13T14:09:25.172+08:00  INFO 9800 --- [main] org.example.HealthCareApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-05-13T14:09:26.620+08:00  INFO 9800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-13T14:09:26.623+08:00  INFO 9800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-05-13T14:09:26.658+08:00  INFO 9800 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2025-05-13T14:09:27.571+08:00  INFO 9800 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-13T14:09:27.582+08:00  INFO 9800 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-13T14:09:27.582+08:00  INFO 9800 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2025-05-13T14:09:27.679+08:00  INFO 9800 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-13T14:09:27.679+08:00  INFO 9800 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2392 ms
+2025-05-13T14:09:28.095+08:00  INFO 9800 --- [main] o.e.w.r.Controller.AudioScoreController  : 科大讯飞API参数已初始化，APP_ID: 90f693db
+2025-05-13T14:09:28.436+08:00  WARN 9800 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.CategoryLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:09:28.509+08:00  WARN 9800 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.Institution ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:09:28.724+08:00  WARN 9800 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.Patient ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:09:28.746+08:00  WARN 9800 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.PatientMedicalRecord ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:09:30.256+08:00  INFO 9800 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-13T14:09:30.267+08:00  INFO 9800 --- [main] org.example.HealthCareApplication        : Started HealthCareApplication in 5.843 seconds (process running for 7.382)
+2025-05-13T14:10:04.952+08:00  INFO 9800 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-13T14:10:04.953+08:00  INFO 9800 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-13T14:10:04.955+08:00  INFO 9800 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-13T14:10:07.331+08:00  INFO 9800 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariCP - Starting...
+2025-05-13T14:10:07.768+08:00  INFO 9800 --- [http-nio-8080-exec-6] com.zaxxer.hikari.pool.HikariPool        : HikariCP - Added connection com.mysql.cj.jdbc.ConnectionImpl@722dcb93
+2025-05-13T14:10:07.770+08:00  INFO 9800 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariCP - Start completed.
+2025-05-13T14:12:28.661+08:00  INFO 9800 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariCP - Shutdown initiated...
+2025-05-13T14:12:28.672+08:00  INFO 9800 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariCP - Shutdown completed.
+2025-05-13T14:12:34.633+08:00  INFO 12912 --- [main] org.example.HealthCareApplication        : Starting HealthCareApplication using Java 21.0.6 with PID 12912 (C:\Users\lenovo\Desktop\AlzheimerPlatform\AlzheimerPlatform\untitled\target\classes started by lenovo in C:\Users\lenovo\Desktop\AlzheimerPlatform)
+2025-05-13T14:12:34.636+08:00  INFO 12912 --- [main] org.example.HealthCareApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-05-13T14:12:35.715+08:00  INFO 12912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-13T14:12:35.718+08:00  INFO 12912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-05-13T14:12:35.765+08:00  INFO 12912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 0 Redis repository interfaces.
+2025-05-13T14:12:36.776+08:00  INFO 12912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-13T14:12:36.791+08:00  INFO 12912 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-13T14:12:36.792+08:00  INFO 12912 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2025-05-13T14:12:36.932+08:00  INFO 12912 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-13T14:12:36.932+08:00  INFO 12912 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2199 ms
+2025-05-13T14:12:37.424+08:00  INFO 12912 --- [main] o.e.w.r.Controller.AudioScoreController  : 科大讯飞API参数已初始化，APP_ID: 90f693db
+2025-05-13T14:12:37.971+08:00  WARN 12912 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.CategoryLevel ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:12:38.096+08:00  WARN 12912 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.Institution ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:12:38.388+08:00  WARN 12912 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.Patient ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:12:38.412+08:00  WARN 12912 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class org.example.domain.entity.PatientMedicalRecord ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2025-05-13T14:12:40.093+08:00  INFO 12912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-13T14:12:40.103+08:00  INFO 12912 --- [main] org.example.HealthCareApplication        : Started HealthCareApplication in 6.183 seconds (process running for 7.72)
+2025-05-13T14:12:44.356+08:00  INFO 12912 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-13T14:12:44.356+08:00  INFO 12912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-13T14:12:44.359+08:00  INFO 12912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-13T14:12:45.446+08:00  INFO 12912 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariCP - Starting...
+2025-05-13T14:12:45.974+08:00  INFO 12912 --- [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariCP - Added connection com.mysql.cj.jdbc.ConnectionImpl@71d997b8
+2025-05-13T14:12:45.977+08:00  INFO 12912 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariCP - Start completed.
+2025-05-13T14:13:00.095+08:00  WARN 12912 --- [http-nio-8080-exec-5] c.b.m.c.t.support.ReflectLambdaMeta      : Unable to make field private final java.lang.Class java.lang.invoke.SerializedLambda.capturingClass accessible: module java.base does not "opens java.lang.invoke" to unnamed module @4ef37659
+2025-05-13T14:18:52.574+08:00  INFO 12912 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariCP - Shutdown initiated...
+2025-05-13T14:18:52.581+08:00  INFO 12912 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariCP - Shutdown completed.

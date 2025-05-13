@@ -1,0 +1,67 @@
+package org.example.domain.entity;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+import java.util.Date;
+
+@Data
+@Schema(description = "病人实体")
+@TableName("patient")
+public class Patient {
+
+    @NotNull(message = "uuid 不能为空")
+    @Schema(description = "uuid")
+    private String uuid;
+
+    @NotNull(message = "姓名不能为空")
+    @Size(min = 1, max = 50, message = "姓名长度应在1到50个字符之间")
+    @Schema(description = "病人姓名")
+    private String name;
+
+    @NotNull(message = "身份证号码不能为空")
+    @Size(min = 18, max = 18, message = "身份证号码长度为18位")
+    @Schema(description = "身份证号码")
+    private String idCard;
+
+    @NotNull(message = "性别不能为空")
+    @Schema(description = "性别 (1: 男, 2: 女)")
+    private Integer gender;
+
+    @NotNull(message = "年龄不能为空")
+    @Schema(description = "病人年龄")
+    private Integer age;
+
+    @NotNull(message = "出生日期不能为空")
+    @Schema(description = "出生日期")
+    private String birthDate;
+
+    @Pattern(regexp = "^1[3-9]\\d{9}$", message = "手机号格式不正确")
+    @Schema(description = "联系电话")
+    private String phone;
+
+    @Schema(description = "住址")
+    private String address;
+
+    @Schema(description = "医生编号")
+    private Integer doctorNumber;
+
+    @Schema(description = "备注")
+    private String remark;
+
+    @Schema(description = "是否死亡")
+    private int isDead;
+
+    @Schema(description = "创建时间")
+    private Date createTime;
+
+    @Schema(description = "更新时间")
+    private Date updateTime;
+
+
+}

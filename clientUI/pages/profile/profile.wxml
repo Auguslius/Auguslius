@@ -1,0 +1,87 @@
+<!--pages/profile/profile.wxml-->
+<view class="profile-container">
+  <!-- 顶部错误提示框 -->
+  <view class="top-error-container {{showTopError ? 'show' : ''}}" bindtap="closeTopError">
+    <view class="top-error-content">
+      <van-icon name="warning-o" class="top-error-icon" />
+      <text>{{topErrorMsg}}</text>
+      <van-icon name="cross" class="top-error-close" catchtap="closeTopError" />
+    </view>
+  </view>
+
+  <!-- 未登录状态 -->
+  <block wx:if="{{!isLogin}}">
+    <view class="user-card not-login">
+      <view class="avatar-placeholder"></view>
+      <view class="login-btn-wrapper">
+        <van-button type="info" size="normal" bindtap="goToLogin">登录/注册</van-button>
+      </view>
+    </view>
+  </block>
+
+  <!-- 已登录状态 -->
+  <block wx:else>
+    <view class="user-card">
+      <view class="user-info">
+        <view class="avatar">
+          <image src="/static/images/logo.png" mode="aspectFill"></image>
+        </view>
+        <view class="info">
+          <view class="username-row">
+            <text class="username">{{userInfo.username}}</text>
+            <!-- 认证状态标识 -->
+            <view class="auth-badge {{isAuthenticated ? 'authenticated' : ''}}">
+              <text>{{isAuthenticated ? '已认证' : '未认证'}}</text>
+            </view>
+          </view>
+          <text class="user-id">ID: {{userInfo.uuid}}</text>
+        </view>
+      </view>
+      <view class="user-data">
+        <view class="data-item">
+          <text class="number">0</text>
+          <text class="label">收藏</text>
+        </view>
+        <view class="data-item">
+          <text class="number">0</text>
+          <text class="label">就诊</text>
+        </view>
+        <view class="data-item">
+          <text class="number">0</text>
+          <text class="label">问诊</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 功能菜单 -->
+  <view class="menu-list">
+    <view 
+      wx:for="{{items}}" 
+      wx:key="text" 
+      class="menu-item" 
+      bindtap="navigateTo" 
+      data-index="{{index}}"
+    >
+      <view class="menu-icon-wrapper">
+        <view class="menu-icon {{item.icon}}"></view>
+      </view>
+      <text class="menu-text">{{item.text}}</text>
+      <!-- 显示认证状态小标签 -->
+      <view wx:if="{{index === 1}}" class="menu-auth-status {{isAuthenticated ? 'authenticated' : 'not-authenticated'}}">
+        {{isAuthenticated ? '已认证' : '未认证'}}
+      </view>
+      <view class="menu-arrow"></view>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-wrapper" wx:if="{{isLogin}}">
+    <van-button type="danger" block bindtap="logout">退出登录</van-button>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text>医疗服务 v1.0.0</text>
+  </view>
+</view>

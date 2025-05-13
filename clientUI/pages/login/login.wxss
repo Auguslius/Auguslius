@@ -1,0 +1,330 @@
+/* pages/login/login.wxss */
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 30rpx;
+}
+
+/* 背景图样式 */
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.8; /* 调整背景图透明度 */
+  object-fit: cover; /* 确保图片填充整个容器 */
+}
+
+/* 登录卡片样式 */
+.login-card {
+  width: 85%;
+  max-width: 600rpx;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 24rpx;
+  box-shadow: 0 15rpx 35rpx rgba(0, 0, 0, 0.1);
+  padding: 50rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  /* 更新卡片渐变背景 */
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  animation: fadeIn 0.5s ease-out;
+  /* 添加边框 */
+  border: 1rpx solid rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.platform-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2E8B57; /* 绿色主题色 */
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.login-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 40rpx;
+  position: relative;
+  padding-bottom: 20rpx;
+}
+
+/* 标题下划线装饰 */
+.login-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 6rpx;
+  background: #2E8B57;
+  border-radius: 3rpx;
+}
+
+/* 错误消息样式 */
+.error-message {
+  width: 100%;
+  padding: 16rpx 20rpx;
+  background-color: #fff2f0;
+  border: 1rpx solid #ffccc7;
+  border-radius: 8rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #f5222d;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.error-message .error-icon {
+  color: #f5222d !important;
+  font-size: 32rpx !important;
+  margin-right: 10rpx;
+}
+
+/* 表单内容 */
+.form-content {
+  width: 100%;
+  margin-top: 10rpx;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: all 0.3s;
+}
+
+/* 表单项悬停效果 */
+.form-item:hover {
+  border-bottom-color: #2E8B57;
+}
+
+/* Vant图标样式 */
+.form-icon {
+  color: #2E8B57 !important;
+  font-size: 42rpx !important;
+  margin-right: 15rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  width: 120rpx;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+input {
+  flex: 1;
+  height: 70rpx;
+  font-size: 28rpx;
+  padding: 0 15rpx;
+}
+
+/* 验证码样式 */
+.verify-code {
+  position: relative;
+}
+
+.code-img-wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 180rpx;
+  height: 70rpx;
+  border-left: 1rpx solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -2rpx 0 8rpx rgba(0, 0, 0, 0.05);
+  border-radius: 0 6rpx 6rpx 0;
+  overflow: hidden;
+}
+
+.code-img {
+  width: 160rpx;
+  height: 60rpx;
+  border-radius: 4rpx;
+}
+
+.code-loading {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 验证码提示样式 */
+.code-tip {
+  position: absolute;
+  bottom: -30rpx;
+  right: 0;
+  width: 180rpx;
+  font-size: 22rpx;
+  color: #666;
+  text-align: center;
+  background-color: rgba(245, 245, 245, 0.8);
+  padding: 4rpx 8rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.code-tip.expired {
+  color: #ff4d4f;
+  font-weight: 500;
+  background-color: rgba(255, 242, 240, 0.9);
+}
+
+/* 新的验证码倒计时提示样式 */
+.code-countdown-tip {
+  position: relative;
+  margin-top: -20rpx;
+  margin-bottom: 20rpx;
+  margin-right: 0;
+  text-align: right;
+  width: 100%;
+  font-size: 22rpx;
+  color: #666;
+  padding: 4rpx 8rpx;
+}
+
+.code-countdown-tip.expired {
+  color: #ff4d4f;
+  font-weight: 500;
+}
+
+/* 底部链接样式 */
+.to-register {
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-text {
+  color: #2E8B57;
+  margin-left: 10rpx;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 修复图标样式 */
+.signup-text .van-icon {
+  font-size: 24rpx;
+  margin-right: 4rpx;
+  vertical-align: middle;
+}
+
+/* 登录按钮样式 */
+.login-btn {
+  width: 100%;
+  height: 90rpx;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #2E8B57, #3cb371);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 20rpx rgba(46, 139, 87, 0.3);
+  transition: all 0.3s;
+}
+
+.login-btn.loading {
+  opacity: 0.8;
+  background: linear-gradient(135deg, #3cb371, #2E8B57);
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 5rpx 10rpx rgba(46, 139, 87, 0.2);
+}
+
+/* 登录中状态样式 */
+.login-btn.loading {
+  background: rgba(46, 139, 87, 0.7);
+  opacity: 0.8;
+}
+
+/* 顶部错误提示框样式 */
+.top-error-container {
+  position: fixed;
+  top: -100rpx;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out;
+}
+
+.top-error-container.show {
+  top: 0;
+}
+
+.top-error-content {
+  background-color: #fff2f0;
+  border-bottom: 1rpx solid #ffccc7;
+  color: #f5222d;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.top-error-icon {
+  margin-right: 10rpx;
+  font-size: 32rpx;
+  color: #f5222d;
+}
+
+.top-error-close {
+  margin-left: auto;
+  font-size: 32rpx;
+  color: #999;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 按钮包装器 */
+.btn-wrapper {
+  margin-top: 50rpx;
+  width: 100%;
+} 

@@ -1,0 +1,75 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <!-- 添加背景图 -->
+  <image class="bg-image" src="/static/images/background.png" mode="aspectFill"></image>
+  
+  <!-- 顶部错误提示框 -->
+  <view class="top-error-container {{showTopError ? 'show' : ''}}" bindtap="closeTopError">
+    <view class="top-error-content">
+      <van-icon name="warning-o" class="top-error-icon" />
+      <text>{{topErrorMsg}}</text>
+      <van-icon name="cross" class="top-error-close" catchtap="closeTopError" />
+    </view>
+  </view>
+  
+  <!-- 登录卡片 -->
+  <view class="login-card">
+    <!-- logo和标题 -->
+    <view class="card-header">
+      <image class="logo" src="/static/images/logo.png" mode="aspectFit"></image>
+      <text class="platform-title">阿尔茨海默症老年评估平台</text>
+    </view>
+    
+    <text class="login-title">用户登录</text>
+    
+    <!-- 表单部分 -->
+    <view class="form-content">
+      <!-- 用户名输入框 -->
+      <view class="form-item">
+        <van-icon name="contact" class="form-icon" />
+        <view class="label">账号</view>
+        <input type="text" placeholder="请输入用户名" bindinput="onUsernameInput" value="{{username}}" />
+      </view>
+      
+      <!-- 密码输入框 -->
+      <view class="form-item">
+        <van-icon name="closed-eye" class="form-icon" />
+        <view class="label">密码</view>
+        <input type="password" placeholder="请输入密码" bindinput="onPasswordInput" value="{{password}}" />
+      </view>
+      
+      <!-- 验证码输入框 -->
+      <view class="form-item verify-code">
+        <van-icon name="shield-o" class="form-icon" />
+        <view class="label">验证码</view>
+        <input type="text" placeholder="请输入验证码" bindinput="onCodeInput" value="{{code}}" />
+        <view class="code-img-wrapper" bindtap="refreshCode">
+          <image wx:if="{{image}}" src="data:image/png;base64,{{image}}" mode="aspectFit" class="code-img"></image>
+          <view wx:else class="code-loading">加载中...</view>
+        </view>
+      </view>
+      <!-- 将倒计时提示放在验证码行下方右侧 -->
+      <view class="code-countdown-tip {{codeExpired ? 'expired' : ''}}">
+        <block wx:if="{{codeExpired}}">
+          已过期，点击刷新
+        </block>
+        <block wx:else>
+          {{countdown}}秒有效
+        </block>
+      </view>
+      
+      <!-- 登录按钮 -->
+      <view class="btn-wrapper">
+        <button class="login-btn {{isLoading ? 'loading' : ''}}" bindtap="login" disabled="{{isLoading}}">
+          <text wx:if="{{isLoading}}">登录中...</text>
+          <text wx:else><van-icon name="success" /> 登 录</text>
+        </button>
+      </view>
+      
+      <!-- 注册链接 -->
+      <view class="to-register" bindtap="goToRegister">
+        <text>没有账号？</text><text class="signup-text"><van-icon name="add-o" /> 立即注册</text>
+      </view>
+    </view>
+  </view>
+</view> 

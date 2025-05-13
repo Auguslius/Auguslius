@@ -1,0 +1,95 @@
+<!--home.wxml-->
+<view class="home-container">
+  <!-- 顶部状态栏 -->
+  <view class="status-bar">
+    <!-- 未登录状态 -->
+    <block wx:if="{{!isLogin}}">
+      <view class="login-tip">
+        <text>您还未登录，请先登录</text>
+        <van-button type="info" size="small" bindtap="goToLogin">去登录</van-button>
+      </view>
+    </block>
+    
+    <!-- 已登录状态 -->
+    <block wx:else>
+      <view class="welcome">
+        <text>欢迎，{{userInfo.username || userInfo.nickName || '用户'}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 轮播图 -->
+  <view class="banner-section">
+    <swiper autoplay circular indicator-dots indicator-color="rgba(255, 255, 255, 0.5)" indicator-active-color="#ffffff" class="banner-swiper">
+      <swiper-item wx:for="{{banners}}" wx:key="title">
+        <view class="banner-item">
+          <image src="{{item.image}}" mode="aspectFill" class="banner-image"></image>
+          <view class="banner-title">{{item.title}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 服务分类 -->
+  <view class="services-section">
+    <view class="section-title">医疗服务</view>
+    <view class="services-grid">
+      <view class="service-item" wx:for="{{services}}" wx:key="name" bindtap="serviceClick" data-index="{{index}}">
+        <van-icon name="{{item.icon}}" color="#2E8B57" custom-class="service-icon" />
+        <text class="service-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐医生 -->
+  <view class="doctors-section">
+    <view class="section-header">
+      <text class="section-title">推荐医生</text>
+      <text class="section-more">查看更多 ></text>
+    </view>
+    <view class="doctors-list">
+      <!-- 加载状态 -->
+      <view class="loading-doctors" wx:if="{{loading}}">
+        <van-loading color="#2E8B57" size="24px" />
+        <text class="loading-text">加载中...</text>
+      </view>
+      
+      <!-- 没有医生数据 -->
+      <view class="empty-doctors" wx:elif="{{!loading && doctors.length === 0}}">
+        <text>暂无医生数据</text>
+      </view>
+      
+      <!-- 医生列表 -->
+      <view class="doctor-card" wx:for="{{doctors}}" wx:key="id" bindtap="viewDoctor" data-id="{{item.id}}">
+        <image class="doctor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <view class="doctor-info">
+          <view class="doctor-name-title">
+            <text class="doctor-name">{{item.name}}</text>
+            <text class="doctor-number" wx:if="{{item.number}}">工号: {{item.number}}</text>
+          </view>
+          <view class="doctor-details">
+            <text class="doctor-institution" wx:if="{{item.institution}}">{{item.institution}}</text>
+            <text class="doctor-position" wx:if="{{item.position}}">{{item.position}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 健康资讯 -->
+  <view class="articles-section">
+    <view class="section-header">
+      <text class="section-title">健康资讯</text>
+      <text class="section-more">查看更多 ></text>
+    </view>
+    <view class="articles-list">
+      <view class="article-item" wx:for="{{articles}}" wx:key="id" bindtap="viewArticle" data-id="{{item.id}}">
+        <view class="article-content">
+          <text class="article-title">{{item.title}}</text>
+          <text class="article-views">{{item.views}} 阅读</text>
+        </view>
+        <image class="article-image" src="{{item.image}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+</view> 

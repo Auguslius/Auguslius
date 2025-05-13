@@ -1,0 +1,22 @@
+2025-02-21T15:40:30.235+08:00  INFO 9892 --- [main] org.example.HealthCareApplication        : Starting HealthCareApplication using Java 21.0.6 with PID 9892 (C:\Users\lenovo\Desktop\untitled\target\classes started by lenovo in C:\Users\lenovo\Desktop\untitled)
+2025-02-21T15:40:30.239+08:00  INFO 9892 --- [main] org.example.HealthCareApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-02-21T15:40:31.211+08:00  INFO 9892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-21T15:40:31.213+08:00  INFO 9892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-21T15:40:31.237+08:00  INFO 9892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-02-21T15:40:32.051+08:00  INFO 9892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-02-21T15:40:32.061+08:00  INFO 9892 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-21T15:40:32.061+08:00  INFO 9892 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2025-02-21T15:40:32.173+08:00  INFO 9892 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-21T15:40:32.174+08:00  INFO 9892 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1832 ms
+2025-02-21T15:40:33.748+08:00  INFO 9892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-02-21T15:40:33.761+08:00  INFO 9892 --- [main] org.example.HealthCareApplication        : Started HealthCareApplication in 4.423 seconds (process running for 5.579)
+2025-02-21T15:40:41.352+08:00  INFO 9892 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-21T15:40:41.352+08:00  INFO 9892 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-21T15:40:41.353+08:00  INFO 9892 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-21T15:40:41.548+08:00  INFO 9892 --- [http-nio-8080-exec-2] o.e.web.rest.Controller.UserController   : 开始更新用户信息，用户ID：5
+2025-02-21T15:40:41.571+08:00  INFO 9892 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariCP - Starting...
+2025-02-21T15:40:41.937+08:00  INFO 9892 --- [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariCP - Added connection com.mysql.cj.jdbc.ConnectionImpl@76deb31d
+2025-02-21T15:40:41.939+08:00  INFO 9892 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariCP - Start completed.
+2025-02-21T15:40:41.993+08:00  INFO 9892 --- [http-nio-8080-exec-2] o.e.web.rest.Controller.UserController   : 用户信息更新成功，ID：5
+2025-02-21T15:42:05.996+08:00  INFO 9892 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariCP - Shutdown initiated...
+2025-02-21T15:42:06.009+08:00  INFO 9892 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariCP - Shutdown completed.

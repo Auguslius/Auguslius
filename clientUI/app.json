@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/logs/logs",
+    "pages/appointment/appointment",
+    "pages/profile/profile",
+    "pages/register/register",
+    "pages/profile/authentication/authentication",
+    "pages/profile/userInfo/userInfo",
+    "pages/profile/my-doctors/my-doctors",
+    "pages/webview/webview",
+    "pages/mmse-assessment/mmse-assessment",
+    "pages/health-record/health-record"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "阿尔茨海默症评估平台",
+    "navigationBarBackgroundColor": "#2E8B57"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2E8B57",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/appointment/appointment",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  }
+}

@@ -1,0 +1,82 @@
+@font-face {
+    font-family: "PingFangSC-Thin"; /* 苹方黑体-细-简 */
+    src: url("@/assets/font/PingFangSC-Thin.ttf");
+    font-weight: 100; /* 对应细字重 */
+  }
+  
+@font-face {
+    font-family: "PingFangSC-Ultralight"; /* 苹方黑体-纤细-简 */
+    src: url("@/assets/font/PingFangSC-Ultralight.ttf");
+    font-weight: 200; /* 对应纤细字重 */
+  }
+  
+@font-face {
+    font-family: "PingFangSC-Regular"; /* 苹方黑体-中粗-简 */
+    src: url("@/assets/font/PingFangSC-Regular.ttf");
+    font-weight: 400; /* 对应常规字重 */
+  }
+
+@font-face {
+    font-family: "PingFangSC-Semibold"; /* 苹方黑体-中黑-简 */
+    src: url("@/assets/font/PingFangSC-Semibold.ttf");
+    font-weight: 600; /* 对应中黑字重 */
+  }
+  
+@font-face {
+    font-family: "PingFangSC-Medium"; /* 苹方黑体-准-简 */
+    src: url("@/assets/font/PingFangSC-Medium.ttf");
+    font-weight: 500; /* 对应准字重 */
+  }
+
+@font-face {
+    font-family: "SourceHanSansSC-Bold"; /* 思源黑体-粗-简 */
+    src: url("@/assets/font/SourceHanSansSC-Bold.otf");
+    font-weight: 700; /* 对应粗字重 */
+}
+
+@font-face {
+  font-family: "SourceHanSansSC-ExtraLight"; 
+  src: url("@/assets/font/SourceHanSansSC-ExtraLight.otf");
+  font-weight: 200; /* 对应粗字重 */
+}
+@font-face {
+  font-family: "SourceHanSansSC-Light"; 
+  src: url("@/assets/font/SourceHanSansSC-Light.otf");
+  font-weight: 300; /* 对应粗字重 */
+}
+@font-face {
+  font-family: "SourceHanSansSC-Normal"; /* 思源黑体-粗-简 */
+  src: url("@/assets/font/SourceHanSansSC-Normal.otf");
+  font-weight: 400; /* 对应粗字重 */
+}
+@font-face {
+  font-family: "SourceHanSansSC-Medium"; /* 思源黑体-粗-简 */
+  src: url("@/assets/font/SourceHanSansSC-Medium.otf");
+  font-weight: 500; /* 对应粗字重 */
+}
+@font-face {
+  font-family: "WenYue_XinQingNianTi_J-W8"; /* 思源黑体-粗-简 */
+  src: url("@/assets/font/WenYue_XinQingNianTi_J-W8.otf");
+  font-weight: 500; /* 对应粗字重 */
+}
+
+// Element Plus 主题色覆盖
+:root {
+  --el-color-primary: #008E65 !important;
+  --el-color-primary-light-3: #4db196 !important;
+  --el-color-primary-light-5: #80c7b0 !important;
+  --el-color-primary-light-7: #b3ddd0 !important;
+  --el-color-primary-light-9: #e6f3ef !important;
+  --el-color-primary-dark-2: #006b4c !important;
+}
+
+// 按钮样式覆盖
+.el-button--primary {
+  --el-button-bg-color: #008E65 !important;
+  --el-button-border-color: #008E65 !important;
+  --el-button-hover-bg-color: #006b4c !important;
+  --el-button-hover-border-color: #006b4c !important;
+  --el-button-active-bg-color: #006b4c !important;
+  --el-button-active-border-color: #006b4c !important;
+}
+

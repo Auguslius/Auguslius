@@ -1,0 +1,429 @@
+/* pages/appointment/appointment.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f7f8fa;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* 自定义下拉菜单 */
+.custom-dropdown {
+  width: 100% !important;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 16rpx;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* 自定义单元格组 */
+.custom-cell-group {
+  margin: 16rpx 16rpx !important;
+  border-radius: 12rpx !important;
+}
+
+.custom-cell {
+  padding: 24rpx 32rpx !important;
+}
+
+.cell-value {
+  color: #333 !important;
+  font-weight: 500;
+}
+
+.cell-value-placeholder {
+  color: #c8c9cc !important;
+}
+
+.header {
+  padding: 24rpx 32rpx;
+  text-align: left;
+  margin-bottom: 0;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #323233;
+}
+
+.appointment-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+.login-required {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 40rpx;
+}
+
+.login-tip {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+}
+
+.login-btn {
+  width: 240rpx !important;
+  border-radius: 40rpx !important;
+  height: 80rpx !important;
+  font-size: 28rpx !important;
+}
+
+.loading-categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #969799;
+  margin-top: 20rpx;
+}
+
+/* 选中的医院信息 */
+.selected-hospital {
+  margin: 0 16rpx;
+}
+
+.selected-hospital-card {
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+  border-radius: 12rpx !important;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 16rpx 0 !important;
+}
+
+.hospital-name {
+  font-size: 32rpx !important;
+  font-weight: bold !important;
+  color: #323233 !important;
+}
+
+/* 医疗机构卡片样式 */
+.institution-list {
+  padding: 0 16rpx;
+}
+
+.institution-card-wrapper {
+  margin-bottom: 16rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.institution-vant-card {
+  border-radius: 12rpx !important;
+  overflow: hidden !important;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05) !important;
+  margin: 0 !important;
+  background-color: #fff !important;
+  padding: 24rpx 16rpx !important;
+}
+
+.hospital-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 88rpx;
+  background-color: #f7f8fa;
+  border-radius: 8rpx;
+}
+
+.institution-card-title {
+  font-size: 30rpx !important;
+  font-weight: bold !important;
+  color: #323233 !important;
+}
+
+.institution-card-desc {
+  font-size: 26rpx !important;
+  margin-top: 8rpx !important;
+  color: #646566 !important;
+}
+
+.institution-tag {
+  margin-right: 8rpx !important;
+  margin-top: 12rpx !important;
+}
+
+.institution-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f5f5f7;
+}
+
+.institution-phone {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.institution-phone text {
+  margin-left: 6rpx;
+}
+
+.bind-doctors-button {
+  height: 64rpx !important;
+  font-size: 26rpx !important;
+  border-radius: 32rpx !important;
+}
+
+/* Picker 选择器样式 */
+.picker-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 480rpx;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 30rpx;
+  background-color: #f7f7f7;
+  border-bottom: 1rpx solid #eee;
+}
+
+.picker-title {
+  font-size: 30rpx;
+  color: #323233;
+  font-weight: bold;
+}
+
+.picker-cancel, .picker-confirm {
+  font-size: 28rpx;
+  padding: 15rpx;
+}
+
+.picker-cancel {
+  color: #969799;
+}
+
+.picker-confirm {
+  color: #1989fa;
+}
+
+.picker-item {
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+/* 顶部错误提示框样式 */
+.top-error-container {
+  position: fixed;
+  top: -100rpx;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out;
+}
+
+.top-error-container.show {
+  top: 0;
+}
+
+.top-error-content {
+  background-color: #fff2f0;
+  border-bottom: 1rpx solid #ffccc7;
+  color: #f5222d;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.top-error-icon {
+  margin-right: 10rpx;
+  font-size: 32rpx;
+  color: #f5222d;
+}
+
+.top-error-close {
+  margin-left: auto;
+  font-size: 32rpx;
+  color: #999;
+}
+
+/* 医生列表样式 */
+.doctor-list-container {
+  padding: 20rpx 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.doctor-list {
+  margin-top: 20rpx;
+}
+
+.doctor-item {
+  margin-bottom: 20rpx;
+}
+
+.doctor-card {
+  background-color: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.doctor-card-top {
+  display: flex;
+  padding: 30rpx;
+  position: relative;
+  align-items: center;
+}
+
+.doctor-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.doctor-avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.doctor-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.doctor-name-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+  flex-wrap: wrap;
+}
+
+.doctor-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #323233;
+  margin-right: 12rpx;
+}
+
+.doctor-status-tag {
+  margin-top: 4rpx !important;
+  font-size: 24rpx !important;
+}
+
+.doctor-brief {
+  font-size: 26rpx;
+  color: #646566;
+  margin-bottom: 8rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.doctor-number {
+  background-color: #f5f5f7;
+  padding: 4rpx 12rpx;
+  border-radius: 6rpx;
+  margin-right: 16rpx;
+}
+
+.doctor-institution {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60%;
+}
+
+.doctor-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.position-tag {
+  margin-right: 8rpx !important;
+  margin-bottom: 4rpx !important;
+}
+
+.doctor-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  color: #969799;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.arrow-down {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+/* 医生详情部分 */
+.doctor-detail {
+  border-top: 1rpx solid #f5f5f7;
+  background-color: #f9f9f9;
+}
+
+.doctor-detail-group {
+  margin: 0 !important;
+}
+
+/* 绑定医生按钮 */
+.bind-btn {
+  height: 64rpx !important;
+  border-radius: 32rpx !important;
+  min-width: 120rpx !important;
+}
+
+.bound-btn {
+  height: 64rpx !important;
+  border-radius: 32rpx !important;
+  min-width: 120rpx !important;
+  color: #969799 !important;
+  background-color: #f2f3f5 !important;
+  border: none !important;
+}
+
+.go-select-hospital-btn {
+  margin-top: 24rpx !important;
+}

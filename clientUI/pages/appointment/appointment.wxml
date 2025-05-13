@@ -1,0 +1,238 @@
+<!--pages/appointment/appointment.wxml-->
+<view class="container">
+  <!-- 顶部错误提示框 -->
+  <view class="top-error-container {{showTopError ? 'show' : ''}}" bindtap="closeTopError">
+    <view class="top-error-content">
+      <van-icon name="warning-o" class="top-error-icon" />
+      <text>{{topErrorMsg}}</text>
+      <van-icon name="cross" class="top-error-close" catchtap="closeTopError" />
+    </view>
+  </view>
+
+  <!-- 未登录状态 -->
+  <view class="login-required" wx:if="{{!isLogin}}">
+    <text class="login-tip">请先登录后查看医院信息</text>
+    <van-button type="primary" custom-class="login-btn" bindtap="goToLogin">去登录</van-button>
+  </view>
+  
+  <!-- 已登录状态 -->
+  <view class="appointment-content" wx:else>
+    <!-- 分类切换按钮 -->
+    <van-dropdown-menu custom-class="custom-dropdown">
+      <van-dropdown-item
+        value="{{currentTab}}"
+        options="{{tabOptions}}"
+        bind:change="switchTabByDropdown"
+      />
+    </van-dropdown-menu>
+    
+    <!-- 选择医院部分 -->
+    <block wx:if="{{currentTab === 'hospital'}}">
+      <view class="header">
+        <view class="title">选择医院</view>
+      </view>
+      
+      <!-- 选择机构和医院 -->
+      <view class="selection-container">
+        <!-- 加载中状态 -->
+        <view class="loading-categories" wx:if="{{loadingCategories}}">
+          <van-loading size="24px" type="spinner" color="#1989fa" />
+          <text class="loading-text">加载机构分类中...</text>
+        </view>
+
+        <block wx:else>
+          <van-cell-group inset custom-class="custom-cell-group">
+            <!-- 机构类型选择 -->
+            <van-cell 
+              title="机构种类" 
+              is-link
+              value="{{currentParentCategory ? currentParentCategory.label : '请选择'}}"
+              bind:click="showParentCategoryPicker"
+              custom-class="custom-cell"
+              value-class="{{currentParentCategory ? 'cell-value' : 'cell-value-placeholder'}}"
+            />
+            
+            <!-- 医院选择 -->
+            <van-cell 
+              title="机构分支类型" 
+              is-link
+              value="{{currentChildCategory ? currentChildCategory.label : '请选择'}}"
+              bind:click="showChildCategoryPicker"
+              custom-class="custom-cell"
+              value-class="{{currentChildCategory ? 'cell-value' : 'cell-value-placeholder'}}"
+            />
+          </van-cell-group>
+          
+          <!-- 当已选择机构分支类型时显示信息 -->
+          <view class="selected-hospital" wx:if="{{currentChildCategory}}">
+            <van-cell-group inset custom-class="selected-hospital-card">
+              <van-cell title-class="hospital-name" title="{{currentChildCategory.label}}" border="{{ false }}"/>
+              <van-cell title="机构种类" value="{{currentParentCategory.label}}" border="{{ false }}"/>
+              <van-cell title="分支类型ID" value="{{currentChildCategory.value}}" border="{{ false }}"/>
+            </van-cell-group>
+          </view>
+          
+          <!-- 显示医疗机构列表 -->
+          <view class="institution-list" wx:if="{{institutionList.length > 0}}">
+            <view wx:for="{{institutionList}}" wx:key="uuid" class="institution-card-wrapper">
+              <van-card
+                custom-class="institution-vant-card"
+                title-class="institution-card-title"
+                desc-class="institution-card-desc"
+                title="{{item.institutionName}}"
+                desc="{{item.address || '暂无地址'}}"
+              >
+                <view class="hospital-icon-wrapper" slot="thumb">
+                  <van-icon name="shop-o" size="48rpx" color="#1989fa" />
+                </view>
+                <view slot="tags">
+                  <van-tag type="{{item.status === 1 ? 'success' : 'danger'}}" plain custom-class="institution-tag">
+                    {{item.status === 1 ? '正常运营' : item.status === 2 ? '审核中' : '暂停服务'}}
+                  </van-tag>
+                  <van-tag type="primary" plain custom-class="institution-tag">
+                    {{item.institutionLevel === 3 ? '三级' : item.institutionLevel === 2 ? '二级' : '一级'}}
+                  </van-tag>
+                </view>
+                <view slot="bottom" class="institution-card-bottom">
+                  <view class="institution-phone">
+                    <van-icon name="phone-o" size="14px" color="#666"/> 
+                    <text>{{item.institutionPhone || '暂无电话'}}</text>
+                  </view>
+                  <van-button 
+                    custom-class="bind-doctors-button" 
+                    type="primary" 
+                    size="small" 
+                    bindtap="getDoctorsByInstitution" 
+                    data-name="{{item.institutionName}}"
+                  >
+                    绑定医生
+                  </van-button>
+                </view>
+              </van-card>
+            </view>
+          </view>
+          
+          <!-- 无医疗机构数据 -->
+          <view wx:if="{{!loadingInstitution && institutionList.length === 0 && currentChildCategory}}">
+            <van-empty
+              description="暂无医疗机构信息"
+              image="search"
+            />
+          </view>
+        </block>
+      </view>
+      
+      <!-- 父级分类选择器 -->
+      <picker-view
+        wx:if="{{showParentPicker && categoryTree.length > 0}}"
+        class="picker-container"
+        value="{{[selectedParentIndex]}}"
+        bindchange="onParentCategoryChange"
+      >
+        <view class="picker-header">
+          <view class="picker-cancel" bindtap="hideParentCategoryPicker">取消</view>
+          <view class="picker-title">选择机构种类</view>
+          <view class="picker-confirm" bindtap="confirmParentCategory">确定</view>
+        </view>
+        <picker-view-column>
+          <view class="picker-item" wx:for="{{categoryTree}}" wx:key="value">{{item.label}}</view>
+        </picker-view-column>
+      </picker-view>
+      
+      <!-- 子级分类选择器 -->
+      <picker-view
+        wx:if="{{showChildPicker && currentParentCategory && currentParentCategory.children && currentParentCategory.children.length > 0}}"
+        class="picker-container"
+        value="{{[selectedChildIndex]}}"
+        bindchange="onChildCategoryChange"
+      >
+        <view class="picker-header">
+          <view class="picker-cancel" bindtap="hideChildCategoryPicker">取消</view>
+          <view class="picker-title">选择机构分支类型</view>
+          <view class="picker-confirm" bindtap="confirmChildCategory">确定</view>
+        </view>
+        <picker-view-column>
+          <view class="picker-item" wx:for="{{currentParentCategory.children}}" wx:key="value">{{item.label}}</view>
+        </picker-view-column>
+      </picker-view>
+    </block>
+    
+    <!-- 绑定医生部分 -->
+    <block wx:if="{{currentTab === 'doctor'}}">
+      <view class="header">
+        <view class="title">绑定医生</view>
+      </view>
+      
+      <!-- 医生列表 -->
+      <view class="doctor-list-container">
+        <!-- 已经获取到医生列表 -->
+        <view class="doctor-list" wx:if="{{doctorList.length > 0}}">
+          <view class="doctor-item" wx:for="{{doctorList}}" wx:key="id">
+            <view class="doctor-card">
+              <view class="doctor-card-top" bindtap="toggleDoctorDetail" data-index="{{index}}">
+                <view class="doctor-avatar">
+                  <image src="{{item.userPic || '/static/images/default-avatar.png'}}" mode="aspectFill"></image>
+                </view>
+                <view class="doctor-info">
+                  <view class="doctor-name-title">
+                    <text class="doctor-name">{{item.nickname || item.username || '医生'}}</text>
+                    <van-tag wx:if="{{item.status === 'active'}}" type="success" custom-class="doctor-status-tag">在职</van-tag>
+                    <van-tag wx:else type="danger" custom-class="doctor-status-tag">离职</van-tag>
+                  </view>
+                  <view class="doctor-brief">
+                    <text class="doctor-number" wx:if="{{item.number}}">工号: {{item.number}}</text>
+                    <text class="doctor-institution" wx:if="{{item.institution}}">{{item.institution}}</text>
+                  </view>
+                  <view class="doctor-tags">
+                    <van-tag wx:if="{{item.position}}" plain type="primary" custom-class="position-tag">{{item.position}}</van-tag>
+                  </view>
+                </view>
+                <view class="doctor-action">
+                  <van-button 
+                    wx:if="{{!item.isBound}}"
+                    type="primary" 
+                    size="small" 
+                    bindtap="bindDoctor" 
+                    custom-class="bind-btn" 
+                    data-id="{{item.id || item.doctorId}}"
+                    data-index="{{index}}"
+                  >绑定</van-button>
+                  <van-button 
+                    wx:else 
+                    type="default" 
+                    size="small" 
+                    custom-class="bound-btn" 
+                    disabled
+                  >已绑定</van-button>
+                </view>
+                <view class="arrow-icon {{item.showDetail ? 'arrow-up' : 'arrow-down'}}">
+                  <van-icon name="{{item.showDetail ? 'arrow-up' : 'arrow-down'}}" />
+                </view>
+              </view>
+              <!-- 展开的详情部分 -->
+              <view class="doctor-detail" wx:if="{{item.showDetail}}">
+                <van-cell-group custom-class="doctor-detail-group">
+                  <van-cell wx:if="{{item.room}}" title="诊室" value="{{item.room}}" />
+                  <van-cell wx:if="{{item.phone}}" title="联系电话" value="{{item.phone}}" />
+                  <van-cell wx:if="{{item.updateTime}}" title="更新时间" value="{{formatTime(item.updateTime)}}" />
+                </van-cell-group>
+              </view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 无医生数据但已经选择过医院 -->
+        <view wx:elif="{{doctorList.length === 0 && selectedHospital}}">
+          <van-empty description="暂无医生信息" image="search" />
+        </view>
+        
+        <!-- 未选择医院 -->
+        <view class="no-hospital-selected" wx:else>
+          <van-empty description="请先选择医院" image="error">
+            <van-button type="primary" class="go-select-hospital-btn" bindtap="switchTab" data-tab="hospital">去选择医院</van-button>
+          </van-empty>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
