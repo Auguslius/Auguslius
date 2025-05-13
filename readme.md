@@ -4,7 +4,7 @@
 
 本文档提供了阿尔茨海默病平台的所有API接口说明，包括接口描述、请求参数、响应格式、错误码等信息。本文档旨在帮助开发人员快速理解和使用平台提供的各项功能。
 
-![1747125309231](https://github.com/Auguslius/Auguslius/blob/main/%E5%9B%BE%E7%89%873.jpg)![1747125317943](https://github.com/Auguslius/Auguslius/blob/main/%E5%9B%BE%E7%89%874.jpg)
+![1747125309231](https://github.com/Auguslius/Auguslius/blob/main/%E5%9B%BE%E7%89%873.jpg)![1747125317943](https://github.com/Auguslius/Auguslius/blob/main/%E5%9B%BE%E7%89%875.jpg)
 
 ## 文档结构
 
